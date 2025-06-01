@@ -27,14 +27,14 @@ The .model of the MOSFET used, is located in the mos_model directory.
 ## Choice of Gate-Bias Voltage
 In order to obtain the best SNR value we have to guarantee: $10k\Omega < R_{in} < 30k \Omega$, so $R_{in} = 20k \Omega$ was chosen.
 
-Given that 20 MOSFETs should generate $400k\Omega$ in total to satisfy this costraint (from the input side the $rds$ are in parallel), every MOSFET should have a $gds = 2.5 \mu S$, using .op simulations and the log file, the correct gate bias voltage that satisfy this costraint is $vgb = 0.14V$. 
+Given that $R_{in} = \frac{r_{ds}}{N}$, $N = 20$, we need that $rds = 400k \Omega$, so every MOSFET should have a $gds = 2.5 \mu S$. Using .op simulations and analyzing the log file results, the correct gate bias voltage to satisfy this constraint is $vgb = 0.14V$. 
 
 ## Choice of $R_{val}$ 
 An additional ac simulation was performed in order to set the $R_{val}$ and guarantee with additional precision the $20k \Omega$ at the source side.
 
 The RF generator was sobstituted with a voltage source set with "AC 1m 0", and the simulation was run with ".ac list 900Meg" and ".net V3".
 
-The conductance at the input is: $mag: 5.80189e-05$ $phase:22.6893°$ which correspond to a $R_{in} = 18.6k\Omega$.
+Using $R_{val} = 1M\Omega$, the conductance at the input is: $mag: 5.80189e^{-5}$, $phase:22.6893°$ which correspond to a $R_{in} = 18.6k\Omega$.
 
 This result will be revisited and further improved after the addition of the amplifier stage.
 
