@@ -7,7 +7,7 @@ The objective is to design an envelope detector for an RF signal with $f = 900 M
 
 
 
-## 💻 Spice Design
+## Spice Design
 The equivalent RF generator ($f = 900 MHz$, $BR = 100Kb/s$) in LTSPICE was created using a Northon Equivalent circuit with an equivalent impedence of $50Ω$ (current amplitude of $20uA$), modulated by a switch with Duty = $50%$.
 
 The following model was used for the switch: .model MYSW SW(Ron=1 Roff=100Meg Vt=-0.5)
@@ -38,3 +38,27 @@ Using $R_{val} = 1M\Omega$, the conductance at the input is: $mag: 5.80189e^{-5}
 
 This result will be revisited and further improved after the addition of the amplifier stage.
 
+## Amplifier Stage
+The following common source stage is polarized so that we have: $g_m = 3.72e^{-7}$, $g_{ds} = 3.27e^{-8}$.
+
+$A_{v} = \frac{-g_{m}}{g_{ds} \cdot G_L} = −11.37$
+
+#### Common Source Stage 
+![Image](https://github.com/user-attachments/assets/ac0a36b4-82f1-44d6-8355-8e26664541f3)
+
+#### Full Amplifier Stage
+![Image](https://github.com/user-attachments/assets/837f04e2-b406-414a-8d9e-54f8b0bf58d3)
+
+## Gate-Bias Voltage Revision
+After modifying the ED load by adding an amplifier stage, the ground potential has shifted. We need to adjust the gate voltage of the MOSFETs to compensate for this change.
+
+With $vgb = 0.26V$, we have a $gds = 2.12 \mu S$ and $R_{in} = 19.7k\Omega$. 
+
+#### Envelope at the amplifier output
+![Image](https://github.com/user-attachments/assets/111909c8-f579-4c5f-9b70-aca05fa48723)
+
+## Matching Network 
+The RF equivalent circuit was replaced with an AC reference having a small-signal amplitude of 1 mV. The inductor was selected to ensure that $Z_{in} = 50 \Omega$ , while the capacitor was chosen to cancel the imaginary part of the impedance. In other words, the matching is achieved by tuning the L and C components to resonate at the RF frequency of interest.
+
+#### Matching Network integration
+![Image](https://github.com/user-attachments/assets/5a6328a5-dc27-47a0-a537-f6e49393d014)
