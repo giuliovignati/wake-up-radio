@@ -1,8 +1,8 @@
-# Wake-Up Radio with MOSFETs in subthreshold region
+# 📻 Wake-Up Radio CMOS $50nm$ (Subthreshold Operation)
 ---
 
 
-## 🎯 Project Objectives 
+## Project Objectives 
 The objective is to design a wake-up radio for an RF signal with $f = 900 MHz$, $BR = 100 \frac{K_{bit}}{s}$, using MOSFETs operating in subthreshold region, with a channel length of $50nm$. The design should include an envelope detector, a matching network for the RF input signal, as well as an amplifier and a comparator.
 
 
@@ -10,7 +10,7 @@ The objective is to design a wake-up radio for an RF signal with $f = 900 MHz$, 
 ## Spice Design
 The equivalent RF generator ($f = 900 MHz$, $BR = 100Kb/s$) in LTSPICE was created using a Northon Equivalent circuit with an equivalent impedence of $50Ω$ (current amplitude of $20 \mu A$), modulated by a switch with Duty = $50%$.
 
-Given that $f_s = 100 \frac{K_{bit}}{s}$, for a single OOK trasmission we have $T=10 \mu s$, while the $T{bit} = 20 \mu s$.
+Given that $f_s = 100 \frac{K_{bit}}{s}$, for a single OOK trasmission we have $T=10 \mu s$, while $T{bit} = 20 \mu s$.
 
 The following model was used for the switch: .model MYSW SW(Ron=1 Roff=100Meg Vt=-0.5)
 
@@ -66,7 +66,7 @@ The chosen values are: $R = 20M \Omega$ and $C = 1nF$, with these it is possible
 
 $\tau = 20 \cdot 10^{-3} = 1000 \cdot T_{bit}$
 
-This value suggest that a $128bit$ message should successfully be trasmitted.
+This value suggest that a $128bit$ message should be trasmitted successfully.
 
 #### Full Amplifier Stage
 ![Image](https://github.com/user-attachments/assets/837f04e2-b406-414a-8d9e-54f8b0bf58d3)
@@ -90,3 +90,12 @@ The RF equivalent circuit was replaced with an AC reference having a small-signa
 The envelope detector does not generate flicker noise because the current through the diodes is zero; therefore, no electrons can enter a trap state. As a result, the only noise component to consider is the thermal noise, which is:
 
 $v_{n}^2=4K_{B}TNr_{ds}=4K_{B}TN^2R_{In}^{ED}$ 
+
+We already used the optimal $R_{in}^{ED}$ and $N$ values to maximize the SNR of the ED, so a noise analysis of the amplifier stage will follow.
+
+We simulated the noise performance of the amplifier with a DC input signal of $100\ \mu\text{V}$, yielding a noise density of $97.3\ \text{nV}/\sqrt{\text{Hz}}$ at $900\ \text{MHz}$.
+To further improve this result, we introduced a $15\ \text{fF}$ decoupling capacitor in parallel with the amplifier output and adjusted the common-drain stage dimensions to $L = 500\ \text{nm}$ and $W = 1\ \mu\text{m}$. These modifications significantly reduced the noise density to $955\ \text{pV}/\sqrt{\text{Hz}}$ at $900\ \text{MHz}$.
+
+#### Amplifier stage with better NF
+![Image](https://github.com/user-attachments/assets/f3b9b1de-319a-476e-a48f-0799cb866cc2)
+
