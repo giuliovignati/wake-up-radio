@@ -93,9 +93,24 @@ $v_{n}^2=4K_{B}TNr_{ds}=4K_{B}TN^2R_{In}^{ED}$
 
 We already used the optimal $R_{in}^{ED}$ and $N$ values to maximize the SNR of the ED, so a noise analysis of the amplifier stage will follow.
 
-We simulated the noise performance of the amplifier with a DC input signal of $100\ \mu\text{V}$, yielding a noise density of $97.3\ \text{nV}/\sqrt{\text{Hz}}$ at $900\ \text{MHz}$.
-To further improve this result, we introduced a $15\ \text{fF}$ decoupling capacitor in parallel with the amplifier output and adjusted the common-drain stage dimensions to $L = 500\ \text{nm}$ and $W = 1\ \mu\text{m}$. These modifications significantly reduced the noise density to $955\ \text{pV}/\sqrt{\text{Hz}}$ at $900\ \text{MHz}$.
+We simulated the noise performance of the amplifier after sobstituting a ground reference to the RF generator, yielding a RMS noise density of $7.6009mV$ covering a range of frequencies from $10Hz$ to $1Ghz$.
+To further improve this result, we introduced a $15\ \text{fF}$ decoupling capacitor in parallel with the amplifier output, changed $I2$ from $20n$ to $15n$, and adjusted the common-drain stage dimensions to $L = 500\ \text{nm}$ and $W = 1\ \mu\text{m}$. These modifications significantly reduced the noise density to $3.6505mV$.
 
 #### Amplifier stage with better NF
-![Image](https://github.com/user-attachments/assets/f3b9b1de-319a-476e-a48f-0799cb866cc2)
+![Image](https://github.com/user-attachments/assets/5c1e029d-a918-40e9-baee-1a8f1e9b1e5b)
+
+## Comparator 
+A standard comparator based on a differential pair was implemented, followed by an amplifier stage using a common-source configuration biased through replica biasing.
+
+#### Comparator Implementation
+![Image](https://github.com/user-attachments/assets/729a8e72-76d4-4d12-bf0d-115e2543b583)
+
+## Results
+The following images illustrate the overall behavior of the entire wake-up radio.
+
+#### Comparator output
+![Image](https://github.com/user-attachments/assets/96dff160-87ad-46f2-a75f-37f24b22a43c)
+
+#### Comparator output after amplifier stage
+![Image](https://github.com/user-attachments/assets/e55a079e-0d28-4d12-909c-5337742f9c9c)
 
