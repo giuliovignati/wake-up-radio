@@ -8,7 +8,7 @@ The objective is to design a wake-up radio for an RF signal with $f = 900 MHz$, 
 
 
 ## Spice Design
-The equivalent RF generator ($f = 900 MHz$, $BR = 100Kb/s$) in LTSPICE was created using a Northon Equivalent circuit with an equivalent impedence of $50Ω$ (current amplitude of $20 \mu A$), modulated by a switch with Duty = $50%$.
+The equivalent RF generator ($f = 900 MHz$, $BR = 100Kb/s$) in LTSPICE was created using a Norton Equivalent circuit with an equivalent impedence of $50Ω$ (current amplitude of $20 \mu A$), modulated by a switch with Duty = $50%$.
 
 Given that $f_s = 100 \frac{K_{bit}}{s}$, for a single OOK trasmission we have $T=10 \mu s$, while $T{bit} = 20 \mu s$.
 
@@ -56,7 +56,7 @@ This result will be revisited and further improved after the addition of the amp
 The following common source stage has: $L=50nm$, $W=75nm$. It is polarized with $20nA$ on the drain side in order to obtain: $g_m = 3.72e^{-7}$, $g_{ds} = 3.27e^{-8}$.
 Given these vaues it is possible to calculate the gain:
 
-$A_{v} = \frac{-g_{m}}{g_{ds} \cdot G_L} = −11.37$
+$A_{v} = \frac{-g_{m}}{g_{ds} + G_L} = −11.37$
 
 #### Common Source Stage 
 ![Image](https://github.com/user-attachments/assets/ac0a36b4-82f1-44d6-8355-8e26664541f3)
